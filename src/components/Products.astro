@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../data/images';
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+const products = [
+  { en: 'REFRIGERATOR', title: '冷蔵庫', image: images.refrigerator, alt: '明るいキッチンの冷蔵庫のイメージ', text: '一人暮らし向けから、ファミリー向けの大型サイズまで。暮らしに合った1台をご相談ください。', class: 'product--fridge' },
+  { en: 'WASHING MACHINE', title: '洗濯機', image: images.washingMachine, alt: 'ドラム式洗濯機のイメージ', text: 'ドラム式洗濯機も取り扱い。設置や動作確認まで、スタッフにおまかせいただけます。', class: 'product--washer' },
+  { en: 'FURNITURE', title: '家具', image: images.furniture, alt: '木の家具がある日常の空間のイメージ', text: 'お部屋に必要な家具も、お手頃に。家電と合わせたまとめ買いもご相談いただけます。', class: 'product--furniture' },
+];
+---
+<section class="products section-space" id="products" aria-labelledby="products-heading">
+  <div class="container">
+    <div class="section-intro" data-reveal><p class="eyebrow">FIND YOUR EVERYDAY.</p><span class="section-index">02 / PRODUCTS</span></div>
+    <div class="section-heading" data-reveal><h2 id="products-heading">毎日の「ほしい」を、<br />もっとお手頃に。</h2><p>一人暮らしにも、家族の暮らしにも。<br />必要な家具・家電を、お探しします。</p></div>
+    <div class="product-grid">
+      {[[products[0]], products.slice(1)].map((group, groupIndex) => <div class="product-column">
+        {group.map(product => <article class:list={['product', product.class]} data-reveal><figure><Image src={product.image} alt={product.alt} widths={[480, 800, 1200]} sizes="(max-width: 640px) 100vw, 50vw" loading="lazy" format="webp" /><span class="product__number">0{products.indexOf(product) + 1}</span></figure><div class="product__info"><p class="eyebrow">{product.en}</p><h3>{product.title}</h3><p>{product.text}</p></div></article>)}
+        {groupIndex === 1 && <a class="product-inquiry" href={site.phoneHref} data-reveal><span class="eyebrow">LET’S FIND IT TOGETHER.</span><h3>お探しのもの、<br />ありますか？</h3><p>在庫や価格は、お電話で。<br />ご希望とご予算をお聞かせください。</p><span class="product-inquiry__link">商品の在庫を相談する<span class="circle-arrow"><Icon name="arrow" /></span></span></a>}
+      </div>)}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,7 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site, navigation } from '../data/site';
+---
+<footer class="footer"><div class="container"><div class="footer__top"><a href="#top" aria-label="ページ先頭へ"><Brand /></a><nav aria-label="フッターナビゲーション">{navigation.map(item => <a href={item.href}>{item.label}</a>)}<a href="#faq">よくあるご質問</a></nav><a href="#top" class="footer__back" aria-label="ページ先頭へ">↑</a></div><div class="footer__bottom"><small>© {new Date().getFullYear()} {site.name}</small></div></div></footer>
+<nav class="mobile-actions" aria-label="すぐに相談・商品を見る"><a href="#products"><Icon name="box" size={20} />商品を見る</a><a href={site.phoneHref}><Icon name="phone" size={20} />電話で相談<Icon name="arrow" size={18} /></a></nav>

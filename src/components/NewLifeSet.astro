@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../data/images';
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+---
+<section class="new-life section-space" id="new-life" aria-labelledby="new-life-heading">
+  <div class="container">
+    <div class="section-intro" data-reveal><p class="eyebrow">A GOOD START, A BETTER PRICE.</p><span class="section-index">01 / NEW LIFE</span></div>
+    <div class="new-life__layout">
+      <div class="new-life__visual" data-reveal><figure><Image src={images.newLife} alt="家具と家電のある新生活のイメージ" widths={[600, 1000, 1400]} sizes="(max-width: 800px) 100vw, 60vw" loading="lazy" format="webp" /></figure><span class="new-life__vertical">LESS WORRY. MORE LIVING.</span></div>
+      <div class="new-life__copy" data-reveal>
+        <p class="mini-label">まとめ買い応援</p><h2 id="new-life-heading">新しい暮らしを、<br />気持ちのいい価格で。</h2>
+        <p class="body-copy">必要な家具も、毎日使う家電も。<br />ご予算に合わせて、まとめてご相談ください。<br />設置まで任せて、身軽な新生活を。</p>
+        <div class="price-panel"><p>新生活向け家具・家電セット <span>価格目安</span></p><div class="price-panel__numbers"><strong>{site.setPrice.min}</strong><span class="price-panel__tilde">〜</span><strong>{site.setPrice.max}</strong><span class="price-panel__yen">円<small>前後</small></span></div><p class="price-panel__note">{site.setPrice.note}</p></div>
+        <a href={site.phoneHref} class="text-link">ご予算・組み合わせを相談する<Icon name="arrow" size={22} /></a>
+      </div>
+    </div>
+  </div>
+</section>

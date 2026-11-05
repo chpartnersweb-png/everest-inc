@@ -1,0 +1,5 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="contact" id="contact" aria-labelledby="contact-heading"><div class="container contact__inner" data-reveal><p class="eyebrow">LET’S TALK ABOUT YOUR NEXT LIFE.</p><h2 id="contact-heading">買いたい。売りたい。<br class="mobile-break" />まずは、お電話で。</h2><a class="contact__phone" href={site.phoneHref}><Icon name="phone" size={35} /><span>{site.phone}</span><span class="circle-arrow"><Icon name="diagonal" size={27} /></span></a><p>ご希望の商品・ご予算・お届け先、<br class="mobile-break" />または売りたい品物をお聞かせください。</p><small>営業時間：不定期 ／ 定休日：不定休</small></div></section>

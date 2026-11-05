@@ -1,0 +1,11 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../data/site';
+---
+<section class="purchase" id="purchase" aria-labelledby="purchase-heading">
+  <div class="purchase__mountain" aria-hidden="true"><svg viewBox="0 0 600 500" fill="none"><path d="m0 490 210-440 150 290 70-150 160 300H0Z" stroke="currentColor" stroke-width="1"/><path d="m70 345 140-120 150 115M110 490 210 225l150 265M210 50v175" stroke="currentColor" stroke-width="1"/></svg></div>
+  <div class="container purchase__inner">
+    <div class="purchase__title" data-reveal><p class="eyebrow">GIVE IT A NEXT CHAPTER.</p><span class="purchase__english">BUY<br />BACK<span>↗</span></span><p class="purchase__area"><span></span>関東の出張買取に対応</p></div>
+    <div class="purchase__copy" data-reveal><span class="section-index">04 / BUY BACK</span><h2 id="purchase-heading">その家具・家電、<br />次の暮らしへ。</h2><p class="purchase__lead">買うときも。売るときも。<br />エベレストにご相談ください。</p><p>家具・家電の高価買取に力を入れています。<br />お引越しや買い替えで手放したいものがあれば、<br class="desktop-break" />品物と所在地をお電話でお聞かせください。</p><div class="purchase__conditions"><span><Icon name="check" size={17} />家具・家電の買取</span><span><Icon name="truck" size={20} />関東エリア</span><p>衣類・雑貨は買取対象外です。<br />商品の状態・買取条件・訪問条件はお問い合わせください。</p></div><a href={site.phoneHref} class="button button--cream"><Icon name="phone" size={19} />買取について電話で相談する<Icon name="arrow" size={21} /></a></div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import Brand from './Brand.astro';
+import Icon from './Icon.astro';
+import { site, navigation } from '../data/site';
+---
+<header class="header" id="top">
+  <div class="header__inner">
+    <a class="header__brand" href="#top" aria-label="エベレスト株式会社 ページ先頭"><Brand /></a>
+    <nav class="desktop-nav" aria-label="メインナビゲーション">
+      {navigation.map(item => <a href={item.href}>{item.label}</a>)}
+    </nav>
+    <a class="header__phone" href={site.phoneHref}><Icon name="phone" size={18} /><span><small>購入・買取のご相談</small><strong>{site.phone}</strong></span></a>
+    <button class="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="メニューを開く" hidden><span></span><span></span><small>MENU</small></button>
+  </div>
+</header>
+<dialog class="mobile-menu" id="mobile-menu" aria-label="メインメニュー">
+  <div class="mobile-menu__top"><Brand /><button type="button" class="menu-close" aria-label="メニューを閉じる">×</button></div>
+  <p class="eyebrow">YOUR LIFE, A LITTLE LIGHTER.</p>
+  <nav aria-label="モバイルナビゲーション">{navigation.map((item, index) => <a href={item.href}><small>0{index + 1}</small><span>{item.label}<em>{item.en}</em></span><Icon name="diagonal" /></a>)}</nav>
+  <a class="button button--green" href={site.phoneHref}><Icon name="phone" size={20} />{site.phone}<Icon name="arrow" size={20} /></a>
+  <p class="mobile-menu__note">家具・家電の販売・買取<br />千葉県佐倉市から、関東へ。</p>
+</dialog>

@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import { images } from '../data/images';
+import Icon from './Icon.astro';
+const steps = [{ number: '01', icon: 'truck', title: 'お届け', description: '1点から、関東へ。' }, { number: '02', icon: 'tools', title: '設置・配線', description: '面倒な作業もおまかせ。' }, { number: '03', icon: 'check', title: '動作確認', description: '使い始める準備まで。' }];
+---
+<section class="support section-space" id="support" aria-labelledby="support-heading">
+  <div class="container">
+    <div class="section-intro" data-reveal><p class="eyebrow">WE TAKE CARE OF THE REST.</p><span class="section-index">03 / SUPPORT</span></div>
+    <div class="section-heading" data-reveal><h2 id="support-heading">買ったあとのことまで、<br />まるごとおまかせ。</h2><p>運ぶ。置く。つなぐ。確かめる。<br />ひとりでは大変なことを、私たちが。</p></div>
+    <div class="support__main">
+      <figure class="support__photo" data-reveal><Image src={images.installation} alt="スタッフによる家電の設置確認を表現したイメージ" widths={[640, 1000, 1400]} sizes="(max-width: 800px) 100vw, 50vw" loading="lazy" format="webp" /><div class="support__photo-tag"><Icon name="tools" /><span>配線・設置・動作確認<strong>すべて無料で対応</strong></span></div></figure>
+      <div class="support__features" data-reveal>
+        <article><span class="support__feature-number">01</span><div><h3>1点から、設置まで。</h3><p>大きな冷蔵庫も、洗濯機も。運搬から設置・配線・動作確認までスタッフが対応します。</p><small>※配送費用は事前にお問い合わせください。</small></div></article>
+        <article><span class="support__feature-number">02</span><div><h3>まとめ買いなら、引越しも。</h3><p>セットでのご注文なら、距離に応じて引越しサポートを無料で実施します。</p><div class="moving-offer"><span>引越しサポート</span><strong>0<span>円</span></strong><span class="moving-offer__condition">セット注文・距離に応じて</span></div><small>※対象条件・対応距離・作業範囲はお問い合わせください。</small></div></article>
+        <article><span class="support__feature-number">03</span><div><h3>ご希望の時間を、お聞かせください。</h3><p>お客様のご都合に合わせた訪問をご相談いただけます。お引越しやお仕事の予定も、まずはお聞かせください。</p></div></article>
+      </div>
+    </div>
+    <div class="support-steps" data-reveal>{steps.map(step => <div><span class="support-steps__number">{step.number}</span><Icon name={step.icon} size={34} /><span><strong>{step.title}</strong><small>{step.description}</small></span></div>)}</div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import { faqs } from '../data/faqs';
+---
+<section class="faq section-space" id="faq" aria-labelledby="faq-heading">
+  <div class="container faq__layout">
+    <header class="faq__heading" data-reveal>
+      <div>
+        <p class="eyebrow">QUESTIONS & ANSWERS</p>
+        <h2 id="faq-heading">よくあるご質問。</h2>
+      </div>
+      <p>気になることは、お電話でもお気軽に。</p>
+    </header>
+    <div class="faq__list" data-reveal>
+      {faqs.map(faq => (
+        <details>
+          <summary>
+            <span class="faq__q">Q.</span>
+            <span>{faq.question}</span>
+            <span class="faq__toggle" aria-hidden="true"></span>
+          </summary>
+          <div class="faq__answer"><span>A.</span><p>{faq.answer}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

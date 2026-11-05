@@ -1,0 +1,13 @@
+---
+import Icon from './Icon.astro';
+const flows = [
+  { name: 'ご購入の流れ', en: 'FOR BUYERS', steps: [{ title: 'お電話でご相談', text: '商品・ご予算・お届け先をお伝えください。' }, { title: '内容・日時の確認', text: '在庫・価格・配送費用・ご希望日時を確認します。' }, { title: '配送・設置', text: 'スタッフが設置・配線・動作確認まで対応します。' }] },
+  { name: '買取の流れ', en: 'FOR SELLERS', steps: [{ title: 'お電話でご相談', text: '売りたい品物と所在地をお伝えください。' }, { title: '訪問条件の確認', text: '買取対象・訪問条件・日時をご相談します。' }, { title: '査定・金額のご相談', text: '品物を確認し、買取金額をご相談します。' }] },
+];
+---
+<section class="flow section-space" aria-labelledby="flow-heading"><div class="container">
+  <div class="section-intro" data-reveal><p class="eyebrow">IT STARTS WITH A CALL.</p><span class="section-index">05 / HOW IT WORKS</span></div>
+  <div class="section-heading" data-reveal><h2 id="flow-heading">まずは、お電話ひとつから。</h2><p>買いたいものも、手放したいものも。<br />ご相談の内容をお聞かせください。</p></div>
+  <div class="flow__columns">{flows.map(flow => <div class="flow__column" data-reveal><div class="flow__label"><h3>{flow.name}</h3><span class="eyebrow">{flow.en}</span></div><ol>{flow.steps.map((step, index) => <li><span>0{index + 1}</span><div><h4>{step.title}</h4><p>{step.text}</p></div></li>)}</ol></div>)}</div>
+  <aside class="warranty" data-reveal aria-labelledby="warranty-heading"><div class="warranty__icon"><Icon name="shield" size={42} /></div><div><p class="eyebrow">AFTER YOUR PURCHASE</p><h3 id="warranty-heading">買ったあとにも、安心を。</h3></div><div class="warranty__period"><strong>3<span>ヶ月〜</span>1<span>年</span></strong><p>商品により最長1年の保証</p></div><p class="warranty__note">対象商品・保証期間・保証内容は、<br class="desktop-break" />購入前にご確認ください。</p></aside>
+</div></section>

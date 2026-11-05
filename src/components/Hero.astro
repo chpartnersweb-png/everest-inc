@@ -1,0 +1,23 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { images } from '../data/images';
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+const mobile = await getImage({ src: images.heroMobile, width: 900, format: 'webp' });
+---
+<section class="hero" aria-labelledby="hero-heading">
+  <picture class="hero__picture">
+    <source media="(max-width: 640px)" srcset={mobile.src} width={mobile.attributes.width} height={mobile.attributes.height} />
+    <Image src={images.hero} alt="明るい部屋に家具と家電がなじむ暮らしのイメージ" widths={[960, 1440, 1920, 2400]} sizes="100vw" loading="eager" fetchpriority="high" format="webp" />
+  </picture>
+  <div class="hero__shade"></div>
+  <div class="hero__content container">
+    <p class="hero__eyebrow"><span></span>家具・家電の販売・買取<span class="hero__location">CHIBA / SAKURA</span></p>
+    <h1 id="hero-heading">家具・家電を、<br /><span>お手頃に。</span><br />設置までおまかせ。</h1>
+    <p class="hero__description">ひとつのお買い物から、新生活のまとめ買いまで。<br />運ぶことも、使い始める準備も。私たちに。</p>
+    <a href={site.phoneHref} class="button button--cream hero__button"><Icon name="phone" size={19} /><span>電話で購入・買取を相談する</span><Icon name="arrow" size={21} /></a>
+  </div>
+  <div class="hero__seal" aria-label="1点から配送・設置まで対応"><span>JUST ONE IS OK.</span><strong>1<span>点から</span></strong><small>配送・設置まで</small><Icon name="truck" size={28} /></div>
+  <div class="hero__bottom"><a href="#new-life">SCROLL TO EXPLORE <span>↓</span></a></div>
+</section>
+<div class="trust-strip"><div class="container trust-strip__inner"><span><Icon name="truck" />配送・出張買取 <strong>関東対応</strong></span><span><Icon name="tools" />配線・設置・動作確認 <strong>無料</strong></span><span><Icon name="shield" />保証 <strong>3ヶ月〜最長1年</strong><small>※商品による</small></span></div></div>

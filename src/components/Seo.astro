@@ -1,0 +1,31 @@
+---
+import { getImage } from 'astro:assets';
+import { images } from '../data/images';
+import { site } from '../data/site';
+const title = '佐倉市の家具・家電販売・買取｜エベレスト株式会社';
+const description = '千葉県佐倉市のエベレスト株式会社。家具・家電をお手頃に販売。1点から配送・設置まで対応し、関東の出張買取もご相談いただけます。新生活向けセットの価格目安は25,000〜50,000円前後。';
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+const ogp = await getImage({ src: images.hero, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const socialImage = Astro.site ? new URL(ogp.src, Astro.site).href : undefined;
+const structuredData = {
+  '@context': 'https://schema.org', '@type': 'Store', name: site.name, telephone: '+81-70-2021-6621',
+  ...(canonical ? { url: canonical } : {}),
+  address: { '@type': 'PostalAddress', addressRegion: '千葉県', addressLocality: '佐倉市', streetAddress: '臼井603', addressCountry: 'JP' },
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="theme-color" content="#173f36" />
+{canonical && <link rel="canonical" href={canonical} />}
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ja_JP" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+{canonical && <meta property="og:url" content={canonical} />}
+{socialImage && <><meta property="og:image" content={socialImage} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="家具と家電のある暮らしのイメージ（生成画像）" /></>}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{socialImage && <meta name="twitter:image" content={socialImage} />}
+<script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, String.fromCharCode(92) + 'u003c')} />
