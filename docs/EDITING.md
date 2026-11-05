@@ -19,10 +19,11 @@
 | 買取案内 | `src/components/Purchase.astro` |
 | 相談の流れ・保証表示 | `src/components/FlowAndWarranty.astro` |
 | サイトの色・文字・余白・画面幅への対応 | `src/styles/global.css` |
-| タイトル、説明文、OGP、構造化データ | `src/components/Seo.astro` |
+| 正式URL、タイトル、説明文、robots指定 | `src/config/seo.mjs` |
+| OGP、構造化データ、メタタグの出力 | `src/components/Seo.astro` |
 | ページ全体の順番 | `src/pages/index.astro` |
 
-価格・サービス内容を変更した際は、関連するFAQ、検索用説明文、保証・サービスの見出しも合わせて編集してください。電話番号は表示用と `tel:` リンク用の両方を更新します。SEOの電話・住所も同時に更新してください。
+価格・サービス内容を変更した際は、関連するFAQ、検索用説明文、保証・サービスの見出しも合わせて編集してください。電話番号は表示用と `tel:` リンク用の両方を更新します。住所は `site.ts` の `postalAddress` で管理し、表示住所とSEOの住所へ反映します。構造化データの電話番号も同ファイルの発信リンクから生成します。
 
 ## 画像
 
@@ -34,11 +35,11 @@ PC・スマートフォン用ヒーローは `<picture>` で切り替えます�
 
 ## 公開URLの設定
 
-公開時に環境変数 `PUBLIC_SITE_URL` に実際の公開URLを設定します。例のドメインをそのまま使わないでください。
+正式な公開URLは `https://everest-inc.pages.dev/` です。`src/config/seo.mjs` の `siteUrl` に設定済みで、環境変数 `PUBLIC_SITE_URL` は不要です。
 
-`astro.config.mjs` がこの値を `site` に反映します。値が設定されると、canonical、OGPのURL、OGP画像の絶対URLが生成される構成です。OGP画像はヒーロー画像から1200×630のJPEGを作る設定です。
+`astro.config.mjs`、canonical、OGP、構造化データ、robots.txt、sitemap.xmlはこの共通URLを参照します。OGP画像はヒーロー画像から1200×630のJPEGを作る設定です。
 
-公開URL未設定時は、URL依存のタグを出力しません。robots.txtとsitemap.xmlは未作成です。公開先・正式URLが確定した段階で設定してください。
+robots.txtとsitemap.xmlは `src/pages/` の静的エンドポイントでビルド時に生成されます。SEO設定の詳細と公開後の作業は `SEO.md` を参照してください。今回のSEO更新後も、ご指定によりビルド・表示確認・デプロイは実施していません。
 
 ## 開発サーバー
 
@@ -57,6 +58,6 @@ npx astro dev stop
 - 引越しサポートの対象距離・注文条件・作業範囲。
 - 配送料と追加料金が生じる条件。
 - 商品ごとの保証期間・保証内容。
-- 正式な公開URLと公開先。
+- 公開先への変更反映（正式URLは確定済み）。
 
 現状はいただいた情報に基づき、価格は目安として表示し、未確定の詳細は電話で確認する案内を掲載しています。

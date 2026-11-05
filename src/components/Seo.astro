@@ -1,31 +1,74 @@
 ---
 import { getImage } from 'astro:assets';
 import { images } from '../data/images';
-import { site } from '../data/site';
-const title = '佐倉市の家具・家電販売・買取｜エベレスト株式会社';
-const description = '千葉県佐倉市のエベレスト株式会社。家具・家電をお手頃に販売。1点から配送・設置まで対応し、関東の出張買取もご相談いただけます。新生活向けセットの価格目安は25,000〜50,000円前後。';
-const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
+import { site, postalAddress } from '../data/site';
+import { seo } from '../config/seo.mjs';
+const { title, description } = seo;
+// The site has one content page. Query strings and fragments share its root URL.
+const canonical = seo.siteUrl;
 const ogp = await getImage({ src: images.hero, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
-const socialImage = Astro.site ? new URL(ogp.src, Astro.site).href : undefined;
+const socialImage = new URL(ogp.src, canonical).href;
+const businessId = new URL('#store', canonical).href;
+const websiteId = new URL('#website', canonical).href;
+const webpageId = new URL('#webpage', canonical).href;
 const structuredData = {
-  '@context': 'https://schema.org', '@type': 'Store', name: site.name, telephone: '+81-70-2021-6621',
-  ...(canonical ? { url: canonical } : {}),
-  address: { '@type': 'PostalAddress', addressRegion: '千葉県', addressLocality: '佐倉市', streetAddress: '臼井603', addressCountry: 'JP' },
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Store',
+      '@id': businessId,
+      name: site.name,
+      url: canonical,
+      description,
+      telephone: site.phoneHref.replace('tel:0', '+81'),
+      address: { '@type': 'PostalAddress', ...postalAddress },
+      areaServed: site.area,
+      hasMap: site.map,
+      identifier: { '@type': 'PropertyValue', name: '古物商許可番号', value: site.license },
+      // Generated lifestyle images do not document real premises or inventory.
+      // Opening hours, coordinates, reviews, and product offers are unconfirmed.
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: canonical,
+      name: site.name,
+      inLanguage: seo.language,
+      publisher: { '@id': businessId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': webpageId,
+      url: canonical,
+      name: title,
+      description,
+      inLanguage: seo.language,
+      isPartOf: { '@id': websiteId },
+      about: { '@id': businessId },
+    },
+  ],
 };
 ---
 <title>{title}</title>
 <meta name="description" content={description} />
+<meta name="robots" content={seo.robots} />
 <meta name="theme-color" content="#173f36" />
-{canonical && <link rel="canonical" href={canonical} />}
+<link rel="canonical" href={canonical} />
 <meta property="og:type" content="website" />
-<meta property="og:locale" content="ja_JP" />
+<meta property="og:locale" content={seo.locale} />
 <meta property="og:site_name" content={site.name} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-{canonical && <meta property="og:url" content={canonical} />}
-{socialImage && <><meta property="og:image" content={socialImage} /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" /><meta property="og:image:alt" content="家具と家電のある暮らしのイメージ（生成画像）" /></>}
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={socialImage} />
+<meta property="og:image:secure_url" content={socialImage} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={seo.socialImageAlt} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-{socialImage && <meta name="twitter:image" content={socialImage} />}
+<meta name="twitter:image" content={socialImage} />
+<meta name="twitter:image:alt" content={seo.socialImageAlt} />
 <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, String.fromCharCode(92) + 'u003c')} />
