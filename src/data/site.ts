@@ -7,6 +7,7 @@ export const postalAddress = {
 
 export const site = {
   name: 'エベレスト株式会社',
+  representative: 'スレスタ　ナラヤン',
   englishName: 'EVEREST',
   phone: '070-2021-6621',
   phoneHref: 'tel:07020216621',
