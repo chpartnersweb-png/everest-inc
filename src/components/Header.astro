@@ -5,7 +5,7 @@ import { site, navigation } from '../data/site';
 ---
 <header class="header" id="top">
   <div class="header__inner">
-    <a class="header__brand" href="#top" aria-label="エベレスト株式会社 ページ先頭"><Brand /></a>
+    <a class="header__brand" href="#top" aria-label={`${site.name} ページ先頭`}><Brand /></a>
     <nav class="desktop-nav" aria-label="メインナビゲーション">
       {navigation.map(item => <a href={item.href}>{item.label}</a>)}
     </nav>

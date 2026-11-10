@@ -9,15 +9,24 @@ const canonical = seo.siteUrl;
 const ogp = await getImage({ src: images.hero, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
 const socialImage = new URL(ogp.src, canonical).href;
 const businessId = new URL('#store', canonical).href;
+const operatorId = new URL('#organization', canonical).href;
 const websiteId = new URL('#website', canonical).href;
 const webpageId = new URL('#webpage', canonical).href;
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
+      '@type': 'Organization',
+      '@id': operatorId,
+      name: site.operatorName,
+      legalName: site.operatorName,
+      url: canonical,
+    },
+    {
       '@type': 'Store',
       '@id': businessId,
       name: site.name,
+      parentOrganization: { '@id': operatorId },
       url: canonical,
       description,
       telephone: site.phoneHref.replace('tel:0', '+81'),
@@ -34,7 +43,7 @@ const structuredData = {
       url: canonical,
       name: site.name,
       inLanguage: seo.language,
-      publisher: { '@id': businessId },
+      publisher: { '@id': operatorId },
     },
     {
       '@type': 'WebPage',

@@ -10,7 +10,7 @@
 
 | 編集する内容 | ファイル |
 | --- | --- |
-| 会社名、電話、住所、営業情報、Facebook、価格目安 | `src/data/site.ts` |
+| 店舗名、運営会社、代表者名、電話、住所、営業情報、Facebook、価格目安 | `src/data/site.ts` |
 | よくあるご質問 | `src/data/faqs.ts` |
 | 画像の読み込み | `src/data/images.ts` |
 | 商品カテゴリの説明 | `src/components/Products.astro` |
@@ -24,6 +24,8 @@
 | ページ全体の順番 | `src/pages/index.astro` |
 
 価格・サービス内容を変更した際は、関連するFAQ、検索用説明文、保証・サービスの見出しも合わせて編集してください。電話番号は表示用と `tel:` リンク用の両方を更新します。住所は `site.ts` の `postalAddress` で管理し、表示住所とSEOの住所へ反映します。構造化データの電話番号も同ファイルの発信リンクから生成します。
+
+店舗名は `site.name`（Chiba-Recycle-Funabashi）、運営会社は `site.operatorName`（エベレスト株式会社）、代表者名は `site.representative` で管理します。店舗名を変更する場合は `src/config/seo.mjs` のタイトル・説明文も更新してください。2026年11月10日に店舗名と運営会社を分け、画面表示・OGP・構造化データを更新しました。今回もビルド・ブラウザ表示確認・デプロイは行っていません。
 
 ## 画像
 

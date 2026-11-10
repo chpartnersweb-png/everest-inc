@@ -6,9 +6,9 @@ export const postalAddress = {
 };
 
 export const site = {
-  name: 'エベレスト株式会社',
+  name: 'Chiba-Recycle-Funabashi',
+  operatorName: 'エベレスト株式会社',
   representative: 'スレスタ　ナラヤン',
-  englishName: 'EVEREST',
   phone: '070-2021-6621',
   phoneHref: 'tel:07020216621',
   address: `${postalAddress.addressRegion}${postalAddress.addressLocality}${postalAddress.streetAddress}`,

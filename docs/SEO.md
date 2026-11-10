@@ -1,6 +1,6 @@
 # SEO設定・公開後の作業
 
-更新日：2026年11月5日
+更新日：2026年11月10日
 
 ## 正式URLと設定元
 
@@ -12,8 +12,10 @@
 
 ## 検索結果向けの設定
 
-- タイトル：`佐倉市の家具・家電販売・出張買取｜エベレスト株式会社`
-- 説明文：`千葉県佐倉市臼井のエベレスト株式会社。冷蔵庫・洗濯機・家具をお手頃に販売。関東の出張買取・配送に対応し、配線・設置・動作確認は無料です。新生活セットの価格目安は25,000〜50,000円前後。商品により3ヶ月〜最長1年保証。`
+- 店舗名・サイト名：`Chiba-Recycle-Funabashi`
+- 運営会社：`エベレスト株式会社`
+- タイトル：`Chiba-Recycle-Funabashi｜千葉県佐倉市の家具・家電販売・出張買取`
+- 説明文：`Chiba-Recycle-Funabashiは、エベレスト株式会社が運営する千葉県佐倉市臼井の家具・家電販売・買取店です。冷蔵庫・洗濯機・家具をお手頃に販売。関東の出張買取・配送に対応し、配線・設置・動作確認は無料。新生活セットは25,000〜50,000円前後、商品により3ヶ月〜最長1年保証。`
 - canonical：`https://everest-inc.pages.dev/`
 - robots：`index, follow, max-image-preview:large`
 - HTMLの言語：`ja`
@@ -32,11 +34,14 @@ OGP画像はヒーロー素材を1200×630のJPEGに変換する構成です。�
 
 JSON-LDの `@graph` で以下を関連づけています。
 
-- `Store`：会社名、正規URL、電話、住所、関東の対応エリア、地図検索リンク、古物商許可番号。
+- `Organization`：運営会社「エベレスト株式会社」。
+- `Store`：店舗名「Chiba-Recycle-Funabashi」、正規URL、電話、住所、関東の対応エリア、地図検索リンク、古物商許可番号。`parentOrganization` で運営会社を参照。
 - `WebSite`：サイト名、正規URL、日本語、運営主体。
 - `WebPage`：ページ名、説明、日本語、所属サイト、紹介する店舗。
 
 住所は `src/data/site.ts` の `postalAddress` から表示住所と構造化データを生成します。電話番号は同ファイルの発信リンクから国際形式を生成します。
+
+店舗名はヘッダー・フッター・店舗情報と `WebSite.name`・`Store.name`・`og:site_name` に共通データから反映します。店舗名にFunabashiを含みますが、所在地は提供済みの千葉県佐倉市臼井603です。
 
 具体的な営業時刻・郵便番号・緯度経度・レビュー・評価点・個別商品の型番と在庫は未提供のため追加していません。組み合わせで変動するセットの目安価格を、確定商品の `Offer` にしていません。生成した室内・商品・作業画像を `Store.image` に設定していません。
 
@@ -53,7 +58,7 @@ Astroの静的エンドポイントとしてビルド時に生成されます。
 
 ローカルソースのSEO設定を更新しました。ユーザーの指定により、変更後のビルド・型チェック・テスト・ブラウザ表示確認・構造化データ検証は実施していません。開発サーバー起動、デプロイ、Search Console操作も行っていません。
 
-公開URL、robots.txt、sitemap.xmlの現行応答をWeb取得ツールで参照しましたが、取得できませんでした。この取得失敗から、サイトの停止やファイルの有無は断定していません。今回の設定が本番へ反映済みであること、インデックス状態、検索順位は未確認です。
+前回のSEO設定時に公開URL、robots.txt、sitemap.xmlの現行応答をWeb取得ツールで参照しましたが、取得できませんでした。この取得失敗から、サイトの停止やファイルの有無は断定していません。今回の店舗名更新では公開URLの再取得は行っておらず、本番への反映、インデックス状態、検索順位は未確認です。
 
 ## 再デプロイ後の作業
 
@@ -71,3 +76,5 @@ Astroの静的エンドポイントとしてビルド時に生成されます。
 - [Google：サイトマップの作成と送信](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)
 - [Google：ローカルビジネスの構造化データ](https://developers.google.com/search/docs/appearance/structured-data/local-business)
 - [Schema.org：Store](https://schema.org/Store)
+- [Google：サイト名の指定](https://developers.google.com/search/docs/appearance/site-names)
+- [Schema.org：parentOrganization](https://schema.org/parentOrganization)
